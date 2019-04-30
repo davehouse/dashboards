@@ -1,0 +1,17 @@
+{
+  "orgId": 1,
+  "name": "IT InfluxDB POC",
+  "type": "influxdb",
+  "typeLogoUrl": "public/app/plugins/datasource/influxdb/img/influxdb_logo.svg",
+  "access": "proxy",
+  "url": "https://hilldale-b40313e5.influxcloud.net:8086",
+  "password": "",
+  "user": "",
+  "database": "relops",
+  "basicAuth": true,
+  "isDefault": true,
+  "jsonData": {
+    "keepCookies": []
+  },
+  "readOnly": false
+}

@@ -1,0 +1,17 @@
+{
+  "orgId": 1,
+  "name": "dev chronograf alerts",
+  "type": "influxdb",
+  "typeLogoUrl": "public/app/plugins/datasource/influxdb/img/influxdb_logo.svg",
+  "access": "proxy",
+  "url": "http://34.216.9.122:8086",
+  "password": "",
+  "user": "",
+  "database": "chronograf",
+  "basicAuth": false,
+  "isDefault": false,
+  "jsonData": {
+    "keepCookies": []
+  },
+  "readOnly": false
+}
