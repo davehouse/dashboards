@@ -1,0 +1,2593 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "limit": 100,
+        "name": "Annotations & Alerts",
+        "showIn": 0,
+        "type": "dashboard"
+      },
+      {
+        "datasource": "Dev InfluxDB",
+        "enable": true,
+        "hide": false,
+        "iconColor": "#ba43a9",
+        "limit": 100,
+        "name": "tree closed",
+        "query": "SELECT status_value,reason,who,status,repo FROM \"autogen\".\"treestatus_stack_exec\" WHERE \"repo\" =~ /mozilla-[cri]|^try$/ AND \"status\" = 'closed' AND $timeFilter",
+        "showIn": 0,
+        "tags": [],
+        "tagsColumn": "who,status,repo",
+        "textColumn": "reason",
+        "type": "tags"
+      },
+      {
+        "datasource": "Dev InfluxDB",
+        "enable": true,
+        "hide": false,
+        "iconColor": "#629e51",
+        "limit": 100,
+        "name": "tree open",
+        "query": "SELECT status_value,reason,who,status,repo FROM \"autogen\".\"treestatus_stack_exec\" WHERE \"repo\" =~ /mozilla-[cri]|^try$/ AND \"status\" = 'open' AND $timeFilter",
+        "showIn": 0,
+        "tags": [],
+        "tagsColumn": "who,status,repo",
+        "textColumn": "reason",
+        "type": "tags"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "iteration": 1552539310996,
+  "links": [],
+  "panels": [
+    {
+      "aliasColors": {},
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Dev InfluxDB",
+      "fill": 1,
+      "gridPos": {
+        "h": 4,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 25,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": false,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "paceLength": 10,
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$tag_host",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval * 20"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "host"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "papertrail",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "count"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "event",
+              "operator": "=",
+              "value": "task error"
+            },
+            {
+              "condition": "AND",
+              "key": "host",
+              "operator": "!~",
+              "value": "/^DESKTOP/"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Task Errors",
+      "tooltip": {
+        "shared": false,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "transparent": true,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
+        "pending gecko-t-linux-talos": "#6ed0e0",
+        "pending gecko-t-linux-talos-b": "#58140c",
+        "pending gecko-t-osx-1010": "rgba(206, 238, 233, 0.71)",
+        "pending gecko-t-osx-1010-beta": "#99440a",
+        "pending gecko-t-win10-64-hbeta": "#890f02",
+        "pending gecko-t-win10-64-hw": "#9ac48a",
+        "started": "rgb(0, 179, 11)",
+        "task error": "rgb(255, 36, 0)"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Dev InfluxDB",
+      "fill": 4,
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 4
+      },
+      "id": 10,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "hideEmpty": false,
+        "hideZero": false,
+        "max": true,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "sort": "current",
+        "sortDesc": true,
+        "total": true,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "paceLength": 10,
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "/pending/",
+          "lines": true
+        },
+        {
+          "alias": "started",
+          "nullPointMode": "null",
+          "steppedLine": true,
+          "transform": "negative-Y"
+        },
+        {
+          "alias": "task error",
+          "bars": true,
+          "color": "rgba(191, 27, 0, 0.5)",
+          "lines": false,
+          "points": false,
+          "yaxis": 2
+        },
+        {
+          "alias": "/^tree/",
+          "hideTooltip": true,
+          "legend": false,
+          "pointradius": 5,
+          "points": true,
+          "yaxis": 2
+        },
+        {
+          "alias": "/tree clos/",
+          "color": "#ba43a9"
+        },
+        {
+          "alias": "/tree [^c]/",
+          "color": "#629e51"
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "pending $tag_workerType",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval * 10"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "workerType"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "linear"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tc_queue_exec",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "refId": "G",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "pendingTasks"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "workerType",
+              "operator": "=~",
+              "value": "/^$workerType$/"
+            }
+          ]
+        },
+        {
+          "alias": "started",
+          "groupBy": [
+            {
+              "params": [
+                "10m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "papertrail",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "count"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "event",
+              "operator": "=~",
+              "value": "/^task start/"
+            },
+            {
+              "condition": "AND",
+              "key": "host",
+              "operator": "!~",
+              "value": "/^DESKTOP/"
+            }
+          ]
+        },
+        {
+          "alias": "task error",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval * 10"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "papertrail",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "count"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "event",
+              "operator": "=~",
+              "value": "/^task error/"
+            },
+            {
+              "condition": "AND",
+              "key": "host",
+              "operator": "!~",
+              "value": "/^DESKTOP/"
+            }
+          ]
+        },
+        {
+          "alias": "tree $tag_status $tag_repo $tag_reason",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "reason"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "repo"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "status"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": true,
+          "measurement": "treestatus_stack_exec",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "query": "SELECT max(\"status_value\") FROM \"autogen\".\"treestatus_stack_exec\" WHERE (\"repo\" =~ /.*/) AND $timeFilter GROUP BY time($__interval), \"reason\", \"repo\", \"status\" fill(null)",
+          "rawQuery": false,
+          "refId": "D",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "status_value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "max"
+              },
+              {
+                "params": [
+                  "*10"
+                ],
+                "type": "math"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "repo",
+              "operator": "=~",
+              "value": "/.*/"
+            },
+            {
+              "condition": "AND",
+              "key": "status",
+              "operator": "!=",
+              "value": "closed"
+            }
+          ]
+        },
+        {
+          "alias": "tree closed $tag_repo $tag_reason",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "reason"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "repo"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "status"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": true,
+          "measurement": "treestatus_stack_exec",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "query": "SELECT max(\"status_value\") FROM \"autogen\".\"treestatus_stack_exec\" WHERE (\"repo\" =~ /.*/) AND $timeFilter GROUP BY time($__interval), \"reason\", \"repo\", \"status\" fill(null)",
+          "rawQuery": false,
+          "refId": "E",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "status_value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "max"
+              },
+              {
+                "params": [
+                  "*10"
+                ],
+                "type": "math"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "repo",
+              "operator": "=~",
+              "value": "/.*/"
+            },
+            {
+              "condition": "AND",
+              "key": "status",
+              "operator": "=",
+              "value": "closed"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [
+        {
+          "colorMode": "custom",
+          "fill": true,
+          "fillColor": "rgba(255, 255, 231, 0.05)",
+          "from": "16",
+          "line": false,
+          "op": "time",
+          "to": "23"
+        }
+      ],
+      "timeShift": null,
+      "title": "Tasks",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": null,
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "decimals": null,
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Dev InfluxDB",
+      "fill": 1,
+      "gridPos": {
+        "h": 5,
+        "w": 17,
+        "x": 0,
+        "y": 14
+      },
+      "id": 29,
+      "interval": "",
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "paceLength": 10,
+      "percentage": false,
+      "pointradius": 1,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$tag_workerType",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval * 10"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "workerType"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "aws-provisionerhttp",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "runningCapacity"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "AWS Workers Provisioned",
+      "tooltip": {
+        "shared": false,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "dev chronograf alerts",
+      "fill": 1,
+      "gridPos": {
+        "h": 6,
+        "w": 7,
+        "x": 17,
+        "y": 14
+      },
+      "id": 4,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null as zero",
+      "paceLength": 10,
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "repeat": "platform",
+      "repeatDirection": "v",
+      "seriesOverrides": [
+        {
+          "alias": "OK",
+          "color": "#37872D"
+        },
+        {
+          "alias": "CRITICAL",
+          "color": "#C4162A"
+        }
+      ],
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$tag_level",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval * 10"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "level"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "linear"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "alerts",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "count"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "alertName",
+              "operator": "=",
+              "value": "RelOps deadman workers"
+            },
+            {
+              "condition": "AND",
+              "key": "host",
+              "operator": "=~",
+              "value": "/mdc[0-9].mozilla/"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "HW Dead Workers",
+      "tooltip": {
+        "shared": false,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "transparent": true,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "columns": [],
+      "datasource": "dev chronograf alerts",
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 12,
+        "w": 17,
+        "x": 0,
+        "y": 19
+      },
+      "id": 8,
+      "links": [],
+      "pageSize": null,
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": 0,
+        "desc": true
+      },
+      "styles": [
+        {
+          "alias": "",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "Time",
+          "thresholds": [],
+          "type": "date",
+          "unit": "short"
+        },
+        {
+          "alias": "worker hostname",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "link": true,
+          "linkTargetBlank": true,
+          "linkUrl": "https://papertrailapp.com/systems/${__cell}/events",
+          "mappingType": 1,
+          "pattern": "host",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "duration",
+          "thresholds": [],
+          "type": "number",
+          "unit": "m"
+        },
+        {
+          "alias": "",
+          "colorMode": "row",
+          "colors": [
+            "#C4162A",
+            "#E0B400",
+            "#37872D"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "log messages",
+          "thresholds": [
+            "1",
+            "10"
+          ],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "last",
+          "thresholds": [],
+          "type": "hidden",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "host"
+              ],
+              "type": "tag"
+            }
+          ],
+          "hide": false,
+          "measurement": "alerts",
+          "orderByTime": "DESC",
+          "policy": "autogen",
+          "query": "SELECT last(\"duration\") /(1000*1000*1000*60) AS \"duration\", last(\"message\"), last(\"value\") AS \"log messages\" FROM \"autogen\".\"alerts\" WHERE (\"alertName\" = 'RelOps deadman workers') AND \"host\" =~ /mdc[0-9].mozilla/ AND $timeFilter AND \"host\" !~ /^DESKTOP/ GROUP BY \"host\" ORDER BY time DESC",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "table",
+          "select": [
+            [
+              {
+                "params": [
+                  "duration"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "duration"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "message"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "message"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "log messages"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "alertName",
+              "operator": "=",
+              "value": "RelOps deadman workers"
+            },
+            {
+              "condition": "AND",
+              "key": "host",
+              "operator": "=~",
+              "value": "/$platform/"
+            }
+          ]
+        }
+      ],
+      "title": "Hardware Dead Worker Alerts",
+      "transform": "table",
+      "type": "table"
+    },
+    {
+      "columns": [],
+      "datasource": "Dev InfluxDB",
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 10,
+        "w": 7,
+        "x": 17,
+        "y": 20
+      },
+      "id": 12,
+      "links": [],
+      "pageSize": null,
+      "scroll": false,
+      "showHeader": true,
+      "sort": {
+        "col": 0,
+        "desc": true
+      },
+      "styles": [
+        {
+          "alias": "Time",
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "pattern": "Time",
+          "type": "date"
+        },
+        {
+          "alias": "",
+          "colorMode": "value",
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "decimals": 0,
+          "link": false,
+          "pattern": "/.*/",
+          "thresholds": [
+            "2",
+            "3"
+          ],
+          "type": "number",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "alias": "$tag__host",
+          "groupBy": [
+            {
+              "params": [
+                "host"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "event"
+              ],
+              "type": "tag"
+            }
+          ],
+          "limit": "",
+          "measurement": "papertrail",
+          "orderByTime": "DESC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "table",
+          "select": [
+            [
+              {
+                "params": [
+                  "count"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "event",
+              "operator": "=",
+              "value": "deploystudio workflow"
+            }
+          ]
+        },
+        {
+          "alias": "",
+          "groupBy": [
+            {
+              "params": [
+                "host"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "event"
+              ],
+              "type": "tag"
+            }
+          ],
+          "measurement": "papertrail",
+          "orderByTime": "DESC",
+          "policy": "autogen",
+          "refId": "B",
+          "resultFormat": "table",
+          "select": [
+            [
+              {
+                "params": [
+                  "count"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "event",
+              "operator": "=",
+              "value": "new host puppet run"
+            }
+          ]
+        },
+        {
+          "groupBy": [
+            {
+              "params": [
+                "host"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "event"
+              ],
+              "type": "tag"
+            }
+          ],
+          "hide": true,
+          "measurement": "papertrail",
+          "orderByTime": "DESC",
+          "policy": "autogen",
+          "refId": "C",
+          "resultFormat": "table",
+          "select": [
+            [
+              {
+                "params": [
+                  "count"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "event",
+              "operator": "=",
+              "value": "root reboot"
+            }
+          ]
+        }
+      ],
+      "title": "Reimaged",
+      "transform": "table",
+      "type": "table"
+    },
+    {
+      "columns": [],
+      "datasource": "Dev InfluxDB",
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 15,
+        "w": 17,
+        "x": 0,
+        "y": 31
+      },
+      "id": 17,
+      "links": [],
+      "pageSize": null,
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": 0,
+        "desc": true
+      },
+      "styles": [
+        {
+          "alias": "Time",
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "pattern": "Time",
+          "type": "date"
+        },
+        {
+          "alias": "",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "decimals": 2,
+          "link": true,
+          "linkTargetBlank": true,
+          "linkUrl": "https://mozilla-releng.net/treestatus/show/${__cell_2}",
+          "pattern": "/.*/",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "alias": "",
+          "colorMode": "cell",
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "status",
+          "thresholds": [
+            ""
+          ],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": []
+        }
+      ],
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "repo"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "status"
+              ],
+              "type": "tag"
+            }
+          ],
+          "hide": true,
+          "measurement": "tree_status_exec",
+          "orderByTime": "DESC",
+          "policy": "autogen",
+          "query": "SELECT status, last(\"reason\") AS reason FROM \"autogen\".\"treestatus_all_http\" WHERE (\"tree\" =~ /mozilla-(b|i|c|r)|^try$|^autoland$/) AND $timeFilter GROUP BY \"tree\" fill(null)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "table",
+          "select": [
+            [
+              {
+                "params": [
+                  "reason"
+                ],
+                "type": "field"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "who"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "repo",
+              "operator": "=~",
+              "value": "/^mozilla-[bcir]|^try$|^autoland$/"
+            }
+          ]
+        },
+        {
+          "groupBy": [
+            {
+              "params": [
+                "repo"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "status"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "who"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "reason"
+              ],
+              "type": "tag"
+            }
+          ],
+          "hide": true,
+          "measurement": "treestatus_stack_exec",
+          "orderByTime": "DESC",
+          "policy": "autogen",
+          "query": "SELECT max(\"status_value\") FROM \"autogen\".\"tree_status_exec\" WHERE (\"repo\" =~ /mozilla-[bcir]|^try$|^autoland$/) AND $timeFilter GROUP BY \"repo\", \"status\", \"reason\", \"who\" ORDER BY time DESC",
+          "rawQuery": false,
+          "refId": "B",
+          "resultFormat": "table",
+          "select": [
+            [
+              {
+                "params": [
+                  "status_value"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": []
+        },
+        {
+          "groupBy": [
+            {
+              "params": [
+                "repo"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "reason"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "status"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "who"
+              ],
+              "type": "tag"
+            }
+          ],
+          "measurement": "treestatus_stack_exec",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "query": "SELECT \"status_value\" FROM \"autogen\".\"treestatus_stack_exec\" WHERE (\"repo\" =~ /mozilla-[ribc]|^try$|^autoland$/ AND \"status\" = 'closed') AND $timeFilter GROUP BY \"repo\", \"reason\", \"status\", \"who\"",
+          "rawQuery": true,
+          "refId": "C",
+          "resultFormat": "table",
+          "select": [
+            [
+              {
+                "params": [
+                  "status_value"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "repo",
+              "operator": "=~",
+              "value": "/mozilla-[ribc]|^try$|^autoland$/"
+            },
+            {
+              "condition": "AND",
+              "key": "status",
+              "operator": "=",
+              "value": "closed"
+            }
+          ]
+        }
+      ],
+      "title": "Tree status",
+      "transform": "table",
+      "type": "table"
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 18,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "tags": [],
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": "Dev InfluxDB",
+        "definition": "SHOW TAG VALUES FROM tc_queue_exec WITH KEY = \"provisionerId\"",
+        "hide": 0,
+        "includeAll": true,
+        "label": null,
+        "multi": true,
+        "name": "provisioner",
+        "options": [
+          {
+            "selected": true,
+            "text": "All",
+            "value": "$__all"
+          },
+          {
+            "selected": false,
+            "text": "aws-provisioner-v1",
+            "value": "aws-provisioner-v1"
+          },
+          {
+            "selected": false,
+            "text": "bitbar",
+            "value": "bitbar"
+          },
+          {
+            "selected": false,
+            "text": "deepspeech-provisioner",
+            "value": "deepspeech-provisioner"
+          },
+          {
+            "selected": false,
+            "text": "gce",
+            "value": "gce"
+          },
+          {
+            "selected": false,
+            "text": "proj-autophone",
+            "value": "proj-autophone"
+          },
+          {
+            "selected": false,
+            "text": "proj-servo",
+            "value": "proj-servo"
+          },
+          {
+            "selected": false,
+            "text": "releng-hardware",
+            "value": "releng-hardware"
+          },
+          {
+            "selected": false,
+            "text": "scriptworker-prov-v1",
+            "value": "scriptworker-prov-v1"
+          },
+          {
+            "selected": false,
+            "text": "terraform-packet",
+            "value": "terraform-packet"
+          }
+        ],
+        "query": "SHOW TAG VALUES FROM tc_queue_exec WITH KEY = \"provisionerId\"",
+        "refresh": 0,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": "Dev InfluxDB",
+        "definition": "SHOW TAG VALUES FROM tc_queue_exec WITH KEY = \"workerType\" WHERE provisionerId =~ /$provisioner/",
+        "hide": 0,
+        "includeAll": true,
+        "label": null,
+        "multi": true,
+        "name": "workerType",
+        "options": [
+          {
+            "selected": true,
+            "text": "All",
+            "value": "$__all"
+          },
+          {
+            "selected": false,
+            "text": "addon-dev",
+            "value": "addon-dev"
+          },
+          {
+            "selected": false,
+            "text": "addon-v1",
+            "value": "addon-v1"
+          },
+          {
+            "selected": false,
+            "text": "ami-test",
+            "value": "ami-test"
+          },
+          {
+            "selected": false,
+            "text": "ami-test-pv",
+            "value": "ami-test-pv"
+          },
+          {
+            "selected": false,
+            "text": "android-api-15",
+            "value": "android-api-15"
+          },
+          {
+            "selected": false,
+            "text": "android-components-g",
+            "value": "android-components-g"
+          },
+          {
+            "selected": false,
+            "text": "application-services-r",
+            "value": "application-services-r"
+          },
+          {
+            "selected": false,
+            "text": "b2gbuild",
+            "value": "b2gbuild"
+          },
+          {
+            "selected": false,
+            "text": "b2gtest",
+            "value": "b2gtest"
+          },
+          {
+            "selected": false,
+            "text": "balrog",
+            "value": "balrog"
+          },
+          {
+            "selected": false,
+            "text": "balrog-dev",
+            "value": "balrog-dev"
+          },
+          {
+            "selected": false,
+            "text": "balrogworker-v1",
+            "value": "balrogworker-v1"
+          },
+          {
+            "selected": false,
+            "text": "beetmoverworker-dev",
+            "value": "beetmoverworker-dev"
+          },
+          {
+            "selected": false,
+            "text": "beetmoverworker-v1",
+            "value": "beetmoverworker-v1"
+          },
+          {
+            "selected": false,
+            "text": "bouncer-dev",
+            "value": "bouncer-dev"
+          },
+          {
+            "selected": false,
+            "text": "bouncer-v1",
+            "value": "bouncer-v1"
+          },
+          {
+            "selected": false,
+            "text": "cli",
+            "value": "cli"
+          },
+          {
+            "selected": false,
+            "text": "cratertest",
+            "value": "cratertest"
+          },
+          {
+            "selected": false,
+            "text": "dbg-linux32",
+            "value": "dbg-linux32"
+          },
+          {
+            "selected": false,
+            "text": "dbg-linux64",
+            "value": "dbg-linux64"
+          },
+          {
+            "selected": false,
+            "text": "dbg-macosx64",
+            "value": "dbg-macosx64"
+          },
+          {
+            "selected": false,
+            "text": "deepspeech-kvm-worker",
+            "value": "deepspeech-kvm-worker"
+          },
+          {
+            "selected": false,
+            "text": "deepspeech-win",
+            "value": "deepspeech-win"
+          },
+          {
+            "selected": false,
+            "text": "deepspeech-win-gpu",
+            "value": "deepspeech-win-gpu"
+          },
+          {
+            "selected": false,
+            "text": "deepspeech-worker",
+            "value": "deepspeech-worker"
+          },
+          {
+            "selected": false,
+            "text": "dep-pushapk",
+            "value": "dep-pushapk"
+          },
+          {
+            "selected": false,
+            "text": "dep-pushsnap",
+            "value": "dep-pushsnap"
+          },
+          {
+            "selected": false,
+            "text": "depsigning",
+            "value": "depsigning"
+          },
+          {
+            "selected": false,
+            "text": "desktop-test",
+            "value": "desktop-test"
+          },
+          {
+            "selected": false,
+            "text": "desktop-test-large",
+            "value": "desktop-test-large"
+          },
+          {
+            "selected": false,
+            "text": "desktop-test-xlarge",
+            "value": "desktop-test-xlarge"
+          },
+          {
+            "selected": false,
+            "text": "ds-lepotato",
+            "value": "ds-lepotato"
+          },
+          {
+            "selected": false,
+            "text": "ds-macos-heavy",
+            "value": "ds-macos-heavy"
+          },
+          {
+            "selected": false,
+            "text": "ds-macos-light",
+            "value": "ds-macos-light"
+          },
+          {
+            "selected": false,
+            "text": "ds-rpi3",
+            "value": "ds-rpi3"
+          },
+          {
+            "selected": false,
+            "text": "ds-scriptworker",
+            "value": "ds-scriptworker"
+          },
+          {
+            "selected": false,
+            "text": "flame-kk",
+            "value": "flame-kk"
+          },
+          {
+            "selected": false,
+            "text": "fp-gecko-3-b-linux",
+            "value": "fp-gecko-3-b-linux"
+          },
+          {
+            "selected": false,
+            "text": "funsize-balrog",
+            "value": "funsize-balrog"
+          },
+          {
+            "selected": false,
+            "text": "funsize-balrog-dev",
+            "value": "funsize-balrog-dev"
+          },
+          {
+            "selected": false,
+            "text": "funsize-mar-generator",
+            "value": "funsize-mar-generator"
+          },
+          {
+            "selected": false,
+            "text": "fuzzer",
+            "value": "fuzzer"
+          },
+          {
+            "selected": false,
+            "text": "gaia",
+            "value": "gaia"
+          },
+          {
+            "selected": false,
+            "text": "gaia-cache",
+            "value": "gaia-cache"
+          },
+          {
+            "selected": false,
+            "text": "gaia-decision",
+            "value": "gaia-decision"
+          },
+          {
+            "selected": false,
+            "text": "gecko-1-b-android",
+            "value": "gecko-1-b-android"
+          },
+          {
+            "selected": false,
+            "text": "gecko-1-b-linux",
+            "value": "gecko-1-b-linux"
+          },
+          {
+            "selected": false,
+            "text": "gecko-1-b-linux-16",
+            "value": "gecko-1-b-linux-16"
+          },
+          {
+            "selected": false,
+            "text": "gecko-1-b-linux-32",
+            "value": "gecko-1-b-linux-32"
+          },
+          {
+            "selected": false,
+            "text": "gecko-1-b-linux-gps",
+            "value": "gecko-1-b-linux-gps"
+          },
+          {
+            "selected": false,
+            "text": "gecko-1-b-linux-large",
+            "value": "gecko-1-b-linux-large"
+          },
+          {
+            "selected": false,
+            "text": "gecko-1-b-linux-usw2",
+            "value": "gecko-1-b-linux-usw2"
+          },
+          {
+            "selected": false,
+            "text": "gecko-1-b-linux-xlarge",
+            "value": "gecko-1-b-linux-xlarge"
+          },
+          {
+            "selected": false,
+            "text": "gecko-1-b-macosx64",
+            "value": "gecko-1-b-macosx64"
+          },
+          {
+            "selected": false,
+            "text": "gecko-1-b-win2012",
+            "value": "gecko-1-b-win2012"
+          },
+          {
+            "selected": false,
+            "text": "gecko-1-b-win2012-beta",
+            "value": "gecko-1-b-win2012-beta"
+          },
+          {
+            "selected": false,
+            "text": "gecko-1-decision",
+            "value": "gecko-1-decision"
+          },
+          {
+            "selected": false,
+            "text": "gecko-1-images",
+            "value": "gecko-1-images"
+          },
+          {
+            "selected": false,
+            "text": "gecko-1-linux-shared",
+            "value": "gecko-1-linux-shared"
+          },
+          {
+            "selected": false,
+            "text": "gecko-2-b-android",
+            "value": "gecko-2-b-android"
+          },
+          {
+            "selected": false,
+            "text": "gecko-2-b-linux",
+            "value": "gecko-2-b-linux"
+          },
+          {
+            "selected": false,
+            "text": "gecko-2-b-linux-large",
+            "value": "gecko-2-b-linux-large"
+          },
+          {
+            "selected": false,
+            "text": "gecko-2-b-linux-xlarge",
+            "value": "gecko-2-b-linux-xlarge"
+          },
+          {
+            "selected": false,
+            "text": "gecko-2-b-macosx64",
+            "value": "gecko-2-b-macosx64"
+          },
+          {
+            "selected": false,
+            "text": "gecko-2-b-win2012",
+            "value": "gecko-2-b-win2012"
+          },
+          {
+            "selected": false,
+            "text": "gecko-2-decision",
+            "value": "gecko-2-decision"
+          },
+          {
+            "selected": false,
+            "text": "gecko-2-images",
+            "value": "gecko-2-images"
+          },
+          {
+            "selected": false,
+            "text": "gecko-2-linux-shared",
+            "value": "gecko-2-linux-shared"
+          },
+          {
+            "selected": false,
+            "text": "gecko-3-b-android",
+            "value": "gecko-3-b-android"
+          },
+          {
+            "selected": false,
+            "text": "gecko-3-b-linux",
+            "value": "gecko-3-b-linux"
+          },
+          {
+            "selected": false,
+            "text": "gecko-3-b-linux-large",
+            "value": "gecko-3-b-linux-large"
+          },
+          {
+            "selected": false,
+            "text": "gecko-3-b-linux-xlarge",
+            "value": "gecko-3-b-linux-xlarge"
+          },
+          {
+            "selected": false,
+            "text": "gecko-3-b-macosx64",
+            "value": "gecko-3-b-macosx64"
+          },
+          {
+            "selected": false,
+            "text": "gecko-3-b-win2012",
+            "value": "gecko-3-b-win2012"
+          },
+          {
+            "selected": false,
+            "text": "gecko-3-b-win2012-c4",
+            "value": "gecko-3-b-win2012-c4"
+          },
+          {
+            "selected": false,
+            "text": "gecko-3-b-win2012-c5",
+            "value": "gecko-3-b-win2012-c5"
+          },
+          {
+            "selected": false,
+            "text": "gecko-3-decision",
+            "value": "gecko-3-decision"
+          },
+          {
+            "selected": false,
+            "text": "gecko-3-images",
+            "value": "gecko-3-images"
+          },
+          {
+            "selected": false,
+            "text": "gecko-3-linux-shared",
+            "value": "gecko-3-linux-shared"
+          },
+          {
+            "selected": false,
+            "text": "gecko-3-t-osx-1010",
+            "value": "gecko-3-t-osx-1010"
+          },
+          {
+            "selected": false,
+            "text": "gecko-decision",
+            "value": "gecko-decision"
+          },
+          {
+            "selected": false,
+            "text": "gecko-focus",
+            "value": "gecko-focus"
+          },
+          {
+            "selected": false,
+            "text": "gecko-images",
+            "value": "gecko-images"
+          },
+          {
+            "selected": false,
+            "text": "gecko-misc",
+            "value": "gecko-misc"
+          },
+          {
+            "selected": false,
+            "text": "gecko-symbol-upload",
+            "value": "gecko-symbol-upload"
+          },
+          {
+            "selected": false,
+            "text": "gecko-t-ap-batt-g5",
+            "value": "gecko-t-ap-batt-g5"
+          },
+          {
+            "selected": false,
+            "text": "gecko-t-ap-batt-p2",
+            "value": "gecko-t-ap-batt-p2"
+          },
+          {
+            "selected": false,
+            "text": "gecko-t-ap-perf-g5",
+            "value": "gecko-t-ap-perf-g5"
+          },
+          {
+            "selected": false,
+            "text": "gecko-t-ap-perf-p2",
+            "value": "gecko-t-ap-perf-p2"
+          },
+          {
+            "selected": false,
+            "text": "gecko-t-ap-test-g5",
+            "value": "gecko-t-ap-test-g5"
+          },
+          {
+            "selected": false,
+            "text": "gecko-t-ap-unit-p2",
+            "value": "gecko-t-ap-unit-p2"
+          },
+          {
+            "selected": false,
+            "text": "gecko-t-linux",
+            "value": "gecko-t-linux"
+          },
+          {
+            "selected": false,
+            "text": "gecko-t-linux-large",
+            "value": "gecko-t-linux-large"
+          },
+          {
+            "selected": false,
+            "text": "gecko-t-linux-talos",
+            "value": "gecko-t-linux-talos"
+          },
+          {
+            "selected": false,
+            "text": "gecko-t-linux-talos-b",
+            "value": "gecko-t-linux-talos-b"
+          },
+          {
+            "selected": false,
+            "text": "gecko-t-linux-xlarge",
+            "value": "gecko-t-linux-xlarge"
+          },
+          {
+            "selected": false,
+            "text": "gecko-t-osx-1010",
+            "value": "gecko-t-osx-1010"
+          },
+          {
+            "selected": false,
+            "text": "gecko-t-osx-1010-beta",
+            "value": "gecko-t-osx-1010-beta"
+          },
+          {
+            "selected": false,
+            "text": "gecko-t-win10-64",
+            "value": "gecko-t-win10-64"
+          },
+          {
+            "selected": false,
+            "text": "gecko-t-win10-64-alpha",
+            "value": "gecko-t-win10-64-alpha"
+          },
+          {
+            "selected": false,
+            "text": "gecko-t-win10-64-beta",
+            "value": "gecko-t-win10-64-beta"
+          },
+          {
+            "selected": false,
+            "text": "gecko-t-win10-64-cu",
+            "value": "gecko-t-win10-64-cu"
+          },
+          {
+            "selected": false,
+            "text": "gecko-t-win10-64-gpu",
+            "value": "gecko-t-win10-64-gpu"
+          },
+          {
+            "selected": false,
+            "text": "gecko-t-win10-64-gpu-a",
+            "value": "gecko-t-win10-64-gpu-a"
+          },
+          {
+            "selected": false,
+            "text": "gecko-t-win10-64-gpu-b",
+            "value": "gecko-t-win10-64-gpu-b"
+          },
+          {
+            "selected": false,
+            "text": "gecko-t-win10-64-hbeta",
+            "value": "gecko-t-win10-64-hbeta"
+          },
+          {
+            "selected": false,
+            "text": "gecko-t-win10-64-hw",
+            "value": "gecko-t-win10-64-hw"
+          },
+          {
+            "selected": false,
+            "text": "gecko-t-win10-64-ux",
+            "value": "gecko-t-win10-64-ux"
+          },
+          {
+            "selected": false,
+            "text": "gecko-t-win64-aarch64-laptop",
+            "value": "gecko-t-win64-aarch64-laptop"
+          },
+          {
+            "selected": false,
+            "text": "gecko-t-win7-32",
+            "value": "gecko-t-win7-32"
+          },
+          {
+            "selected": false,
+            "text": "gecko-t-win7-32-beta",
+            "value": "gecko-t-win7-32-beta"
+          },
+          {
+            "selected": false,
+            "text": "gecko-t-win7-32-cu",
+            "value": "gecko-t-win7-32-cu"
+          },
+          {
+            "selected": false,
+            "text": "gecko-t-win7-32-gpu",
+            "value": "gecko-t-win7-32-gpu"
+          },
+          {
+            "selected": false,
+            "text": "gecko-t-win7-32-gpu-b",
+            "value": "gecko-t-win7-32-gpu-b"
+          },
+          {
+            "selected": false,
+            "text": "github-worker",
+            "value": "github-worker"
+          },
+          {
+            "selected": false,
+            "text": "hg-push",
+            "value": "hg-push"
+          },
+          {
+            "selected": false,
+            "text": "hg-worker",
+            "value": "hg-worker"
+          },
+          {
+            "selected": false,
+            "text": "macos",
+            "value": "macos"
+          },
+          {
+            "selected": false,
+            "text": "mobile-1-b-andrcmp",
+            "value": "mobile-1-b-andrcmp"
+          },
+          {
+            "selected": false,
+            "text": "mobile-1-b-fenix",
+            "value": "mobile-1-b-fenix"
+          },
+          {
+            "selected": false,
+            "text": "mobile-1-b-ref-browser",
+            "value": "mobile-1-b-ref-browser"
+          },
+          {
+            "selected": false,
+            "text": "mobile-1-decision",
+            "value": "mobile-1-decision"
+          },
+          {
+            "selected": false,
+            "text": "mobile-1-images",
+            "value": "mobile-1-images"
+          },
+          {
+            "selected": false,
+            "text": "mobile-3-b-andrcmp",
+            "value": "mobile-3-b-andrcmp"
+          },
+          {
+            "selected": false,
+            "text": "mobile-3-b-fenix",
+            "value": "mobile-3-b-fenix"
+          },
+          {
+            "selected": false,
+            "text": "mobile-3-b-ref-browser",
+            "value": "mobile-3-b-ref-browser"
+          },
+          {
+            "selected": false,
+            "text": "mobile-3-decision",
+            "value": "mobile-3-decision"
+          },
+          {
+            "selected": false,
+            "text": "mobile-3-images",
+            "value": "mobile-3-images"
+          },
+          {
+            "selected": false,
+            "text": "mobile-beetmover-dev",
+            "value": "mobile-beetmover-dev"
+          },
+          {
+            "selected": false,
+            "text": "mobile-beetmover-v1",
+            "value": "mobile-beetmover-v1"
+          },
+          {
+            "selected": false,
+            "text": "mobile-pushapk-dep-v1",
+            "value": "mobile-pushapk-dep-v1"
+          },
+          {
+            "selected": false,
+            "text": "mobile-pushapk-v1",
+            "value": "mobile-pushapk-v1"
+          },
+          {
+            "selected": false,
+            "text": "mobile-signing-dep-v1",
+            "value": "mobile-signing-dep-v1"
+          },
+          {
+            "selected": false,
+            "text": "mobile-signing-v1",
+            "value": "mobile-signing-v1"
+          },
+          {
+            "selected": false,
+            "text": "mozillaonline-1-b-linux",
+            "value": "mozillaonline-1-b-linux"
+          },
+          {
+            "selected": false,
+            "text": "mozillaonline-3-b-linux",
+            "value": "mozillaonline-3-b-linux"
+          },
+          {
+            "selected": false,
+            "text": "mulet-debug",
+            "value": "mulet-debug"
+          },
+          {
+            "selected": false,
+            "text": "mulet-opt",
+            "value": "mulet-opt"
+          },
+          {
+            "selected": false,
+            "text": "nss-win2012r2",
+            "value": "nss-win2012r2"
+          },
+          {
+            "selected": false,
+            "text": "nss-win2012r2-new",
+            "value": "nss-win2012r2-new"
+          },
+          {
+            "selected": false,
+            "text": "opt-linux32",
+            "value": "opt-linux32"
+          },
+          {
+            "selected": false,
+            "text": "opt-linux64",
+            "value": "opt-linux64"
+          },
+          {
+            "selected": false,
+            "text": "opt-macosx64",
+            "value": "opt-macosx64"
+          },
+          {
+            "selected": false,
+            "text": "pushapk-v1",
+            "value": "pushapk-v1"
+          },
+          {
+            "selected": false,
+            "text": "pushsnap-v1",
+            "value": "pushsnap-v1"
+          },
+          {
+            "selected": false,
+            "text": "releng-svc",
+            "value": "releng-svc"
+          },
+          {
+            "selected": false,
+            "text": "releng-svc-compute",
+            "value": "releng-svc-compute"
+          },
+          {
+            "selected": false,
+            "text": "releng-svc-memory",
+            "value": "releng-svc-memory"
+          },
+          {
+            "selected": false,
+            "text": "releng-svc-prod",
+            "value": "releng-svc-prod"
+          },
+          {
+            "selected": false,
+            "text": "releng-task",
+            "value": "releng-task"
+          },
+          {
+            "selected": false,
+            "text": "relops-image-builder",
+            "value": "relops-image-builder"
+          },
+          {
+            "selected": false,
+            "text": "rustbuild",
+            "value": "rustbuild"
+          },
+          {
+            "selected": false,
+            "text": "servo-docker-untrusted",
+            "value": "servo-docker-untrusted"
+          },
+          {
+            "selected": false,
+            "text": "servo-docker-worker",
+            "value": "servo-docker-worker"
+          },
+          {
+            "selected": false,
+            "text": "servo-win2016",
+            "value": "servo-win2016"
+          },
+          {
+            "selected": false,
+            "text": "servo-win2016-staging",
+            "value": "servo-win2016-staging"
+          },
+          {
+            "selected": false,
+            "text": "shipit-dev",
+            "value": "shipit-dev"
+          },
+          {
+            "selected": false,
+            "text": "shipit-v1",
+            "value": "shipit-v1"
+          },
+          {
+            "selected": false,
+            "text": "signing-linux-dev",
+            "value": "signing-linux-dev"
+          },
+          {
+            "selected": false,
+            "text": "signing-linux-v1",
+            "value": "signing-linux-v1"
+          },
+          {
+            "selected": false,
+            "text": "spidermonkey",
+            "value": "spidermonkey"
+          },
+          {
+            "selected": false,
+            "text": "symbol-upload",
+            "value": "symbol-upload"
+          },
+          {
+            "selected": false,
+            "text": "taskcluster-generic",
+            "value": "taskcluster-generic"
+          },
+          {
+            "selected": false,
+            "text": "taskcluster-images",
+            "value": "taskcluster-images"
+          },
+          {
+            "selected": false,
+            "text": "tb-balrog-dev",
+            "value": "tb-balrog-dev"
+          },
+          {
+            "selected": false,
+            "text": "tb-balrog-v1",
+            "value": "tb-balrog-v1"
+          },
+          {
+            "selected": false,
+            "text": "tb-beetmover-dev",
+            "value": "tb-beetmover-dev"
+          },
+          {
+            "selected": false,
+            "text": "tb-beetmover-v1",
+            "value": "tb-beetmover-v1"
+          },
+          {
+            "selected": false,
+            "text": "tb-bouncer-dev",
+            "value": "tb-bouncer-dev"
+          },
+          {
+            "selected": false,
+            "text": "tb-bouncer-v1",
+            "value": "tb-bouncer-v1"
+          },
+          {
+            "selected": false,
+            "text": "tb-depsigning",
+            "value": "tb-depsigning"
+          },
+          {
+            "selected": false,
+            "text": "tb-shipit-dev",
+            "value": "tb-shipit-dev"
+          },
+          {
+            "selected": false,
+            "text": "tb-shipit-v1",
+            "value": "tb-shipit-v1"
+          },
+          {
+            "selected": false,
+            "text": "tb-signing-v1",
+            "value": "tb-signing-v1"
+          },
+          {
+            "selected": false,
+            "text": "tb-treescript-comm-dev",
+            "value": "tb-treescript-comm-dev"
+          },
+          {
+            "selected": false,
+            "text": "tb-treescript-comm-v1",
+            "value": "tb-treescript-comm-v1"
+          },
+          {
+            "selected": false,
+            "text": "tcvcs-cache",
+            "value": "tcvcs-cache"
+          },
+          {
+            "selected": false,
+            "text": "tcvcs-cache-device",
+            "value": "tcvcs-cache-device"
+          },
+          {
+            "selected": false,
+            "text": "treescript-dev",
+            "value": "treescript-dev"
+          },
+          {
+            "selected": false,
+            "text": "treescript-v1",
+            "value": "treescript-v1"
+          },
+          {
+            "selected": false,
+            "text": "tutorial",
+            "value": "tutorial"
+          },
+          {
+            "selected": false,
+            "text": "version-control-tools",
+            "value": "version-control-tools"
+          },
+          {
+            "selected": false,
+            "text": "wcosta-debug",
+            "value": "wcosta-debug"
+          },
+          {
+            "selected": false,
+            "text": "win2012r2",
+            "value": "win2012r2"
+          },
+          {
+            "selected": false,
+            "text": "win2012r2-cu",
+            "value": "win2012r2-cu"
+          },
+          {
+            "selected": false,
+            "text": "worker-ci-test",
+            "value": "worker-ci-test"
+          },
+          {
+            "selected": false,
+            "text": "wpt-docker-worker",
+            "value": "wpt-docker-worker"
+          }
+        ],
+        "query": "SHOW TAG VALUES FROM tc_queue_exec WITH KEY = \"workerType\" WHERE provisionerId =~ /$provisioner/",
+        "refresh": 0,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "SHOW TAG VALUES FROM tc_queue_exec WITH KEY = \"workerType\" WHERE provisionerId =~ /.$tag./",
+        "tags": [],
+        "tagsQuery": "SHOW TAG VALUES FROM tc_queue_exec WITH KEY = \"provisionerId\"",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "datasource": "Dev InfluxDB",
+        "filters": [],
+        "hide": 0,
+        "label": null,
+        "name": "filter",
+        "skipUrlSync": false,
+        "type": "adhoc"
+      },
+      {
+        "datasource": "dev chronograf alerts",
+        "filters": [],
+        "hide": 0,
+        "label": "alert filter",
+        "name": "alert_filter",
+        "skipUrlSync": false,
+        "type": "adhoc"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-2d",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "",
+  "title": "Workers",
+  "uid": "3PORALriz"
+}
