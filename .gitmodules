@@ -1,3 +1,0 @@
-[submodule "grafana-backup-tool"]
-	path = grafana-backup-tool
-	url = git@github.com:ysde/grafana-backup-tool.git
