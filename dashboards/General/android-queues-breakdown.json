@@ -63,7 +63,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "alias": "proj-autophone/$tag_queue",
+          "alias": "$tag_queue",
           "groupBy": [
             {
               "params": [
@@ -181,6 +181,7 @@
       }
     },
     {
+      "cacheTimeout": null,
       "datasource": "IT InfluxDB POC",
       "gridPos": {
         "h": 7,
@@ -195,6 +196,7 @@
       "options": {
         "maxValue": "1000",
         "minValue": 0,
+        "orientation": "auto",
         "showThresholdLabels": true,
         "showThresholdMarkers": true,
         "thresholds": [
@@ -218,11 +220,12 @@
         "valueOptions": {
           "decimals": null,
           "prefix": "",
-          "stat": "current",
+          "stat": "last",
           "suffix": "",
           "unit": "none"
         }
       },
+      "pluginVersion": "6.1.6",
       "targets": [
         {
           "groupBy": [
@@ -314,7 +317,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "alias": "proj-autophone/$tag_queue",
+          "alias": "$tag_queue",
           "groupBy": [
             {
               "params": [
@@ -432,6 +435,8 @@
       }
     },
     {
+      "cacheTimeout": null,
+      "datasource": "IT InfluxDB POC",
       "gridPos": {
         "h": 7,
         "w": 4,
@@ -443,6 +448,7 @@
       "options": {
         "maxValue": "1000",
         "minValue": 0,
+        "orientation": "auto",
         "showThresholdLabels": true,
         "showThresholdMarkers": true,
         "thresholds": [
@@ -466,11 +472,12 @@
         "valueOptions": {
           "decimals": null,
           "prefix": "",
-          "stat": "current",
+          "stat": "last",
           "suffix": "",
           "unit": "none"
         }
       },
+      "pluginVersion": "6.1.6",
       "targets": [
         {
           "groupBy": [

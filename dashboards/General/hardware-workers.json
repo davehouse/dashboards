@@ -1,0 +1,2380 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 1,
+  "iteration": 1556744656975,
+  "links": [],
+  "panels": [
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "InfluxDB v2",
+      "fill": 1,
+      "gridPos": {
+        "h": 4,
+        "w": 16,
+        "x": 0,
+        "y": 0
+      },
+      "id": 4,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "workerType"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "previous"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "tc_queue2_exec",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "query": "SELECT mean(\"pendingTasks\") FROM \"autogen\".\"tc_queue2_exec\" WHERE (\"provisionerId\" = 'releng-hardware') AND $timeFilter GROUP BY time($__interval), \"workerType\" fill(previous)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "pendingTasks"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "provisionerId",
+              "operator": "=",
+              "value": "releng-hardware"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Queued Tasks",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "columns": [],
+      "datasource": "InfluxDB v2",
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 12,
+        "w": 8,
+        "x": 16,
+        "y": 0
+      },
+      "id": 7,
+      "links": [],
+      "pageSize": null,
+      "repeat": null,
+      "repeatDirection": "v",
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": 0,
+        "desc": true
+      },
+      "styles": [
+        {
+          "alias": "Time",
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "pattern": "Time",
+          "type": "hidden"
+        },
+        {
+          "alias": "",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "decimals": 2,
+          "pattern": "/.*/",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT distinct(\"version_configstring\") FROM \"puppetagent\" WHERE $timeFilter GROUP BY workerType",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "table",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Puppet config version",
+      "transform": "table",
+      "type": "table"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "InfluxDB v2",
+      "fill": 1,
+      "gridPos": {
+        "h": 4,
+        "w": 16,
+        "x": 0,
+        "y": 4
+      },
+      "id": 5,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "workerType"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "previous"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "tc_queue2_exec",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "running"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "provisionerId",
+              "operator": "=",
+              "value": "releng-hardware"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Running Tasks",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "InfluxDB v2",
+      "fill": 1,
+      "gridPos": {
+        "h": 6,
+        "w": 16,
+        "x": 0,
+        "y": 8
+      },
+      "id": 2,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "worker proc $tag_workerType",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "procstat",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "query": "SELECT count(distinct(host)) FROM (SELECT \"cpu_usage\",\"host\" FROM \"autogen\".\"procstat\" WHERE $timeFilter) WHERE $timeFilter GROUP BY workerType, time($__interval * 10) fill(null)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "cpu_usage"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "t-linux64-ms-001"
+            }
+          ]
+        },
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "procstat",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "query": "SELECT max(\"cpu_usage\") FROM \"autogen\".\"procstat\" WHERE $timeFilter GROUP BY workerType, time($__interval*20)",
+          "rawQuery": true,
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "cpu_usage"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "t-linux64-ms-001"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Generic Worker process reporting",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "InfluxDB v2",
+      "fill": 1,
+      "gridPos": {
+        "h": 3,
+        "w": 16,
+        "x": 0,
+        "y": 14
+      },
+      "id": 8,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "repeat": "workerType",
+      "repeatDirection": "v",
+      "scopedVars": {
+        "workerType": {
+          "selected": true,
+          "text": "gecko-3-t-osx-1010",
+          "value": "gecko-3-t-osx-1010"
+        }
+      },
+      "seriesOverrides": [
+        {
+          "alias": "queue",
+          "color": "#FFB357",
+          "yaxis": 2
+        },
+        {
+          "alias": "cpu",
+          "color": "#FF7383",
+          "linewidth": 0
+        },
+        {
+          "alias": "puppet failure",
+          "color": "#C4162A",
+          "linewidth": 0
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "count",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "procstat",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "query": "SELECT count(distinct(host)) FROM (SELECT \"cpu_usage\",\"host\" FROM \"autogen\".\"procstat\" WHERE $timeFilter) WHERE $timeFilter  AND (\"workerType\" =~ /^$workerType$/) GROUP BY workerType, time($__interval * 10) fill(null)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "cpu_usage"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "t-linux64-ms-001"
+            }
+          ]
+        },
+        {
+          "alias": "puppet failure",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "workerType"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "puppetagent",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT sum(\"events_failure\") FROM \"puppetagent\" WHERE $timeFilter AND (\"workerType\" =~ /^$workerType$/) GROUP BY time($__interval), \"workerType\" fill(null)",
+          "rawQuery": true,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "events_failure"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": []
+        },
+        {
+          "alias": "cpu",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "procstat",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "query": "SELECT max(\"cpu_usage\") FROM \"autogen\".\"procstat\" WHERE $timeFilter  AND (\"workerType\" =~ /^$workerType$/) GROUP BY workerType, time($__interval*20)",
+          "rawQuery": true,
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "cpu_usage"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "t-linux64-ms-001"
+            }
+          ]
+        },
+        {
+          "alias": "queue",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT mean(\"pendingTasks\") FROM \"autogen\".\"tc_queue2_exec\" WHERE (\"provisionerId\" = 'releng-hardware') AND (\"workerType\" =~ /^$workerType$/) AND $timeFilter GROUP BY time($__interval), \"workerType\" fill(previous)",
+          "rawQuery": true,
+          "refId": "D",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "$workerType",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "transparent": true,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "InfluxDB v2",
+      "fill": 1,
+      "gridPos": {
+        "h": 3,
+        "w": 16,
+        "x": 0,
+        "y": 17
+      },
+      "id": 9,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "repeat": null,
+      "repeatDirection": "v",
+      "repeatIteration": 1556744656975,
+      "repeatPanelId": 8,
+      "scopedVars": {
+        "workerType": {
+          "selected": true,
+          "text": "gecko-t-linux-talos",
+          "value": "gecko-t-linux-talos"
+        }
+      },
+      "seriesOverrides": [
+        {
+          "alias": "queue",
+          "color": "#FFB357",
+          "yaxis": 2
+        },
+        {
+          "alias": "cpu",
+          "color": "#FF7383",
+          "linewidth": 0
+        },
+        {
+          "alias": "puppet failure",
+          "color": "#C4162A",
+          "linewidth": 0
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "count",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "procstat",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "query": "SELECT count(distinct(host)) FROM (SELECT \"cpu_usage\",\"host\" FROM \"autogen\".\"procstat\" WHERE $timeFilter) WHERE $timeFilter  AND (\"workerType\" =~ /^$workerType$/) GROUP BY workerType, time($__interval * 10) fill(null)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "cpu_usage"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "t-linux64-ms-001"
+            }
+          ]
+        },
+        {
+          "alias": "puppet failure",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "workerType"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "puppetagent",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT sum(\"events_failure\") FROM \"puppetagent\" WHERE $timeFilter AND (\"workerType\" =~ /^$workerType$/) GROUP BY time($__interval), \"workerType\" fill(null)",
+          "rawQuery": true,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "events_failure"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": []
+        },
+        {
+          "alias": "cpu",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "procstat",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "query": "SELECT max(\"cpu_usage\") FROM \"autogen\".\"procstat\" WHERE $timeFilter  AND (\"workerType\" =~ /^$workerType$/) GROUP BY workerType, time($__interval*20)",
+          "rawQuery": true,
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "cpu_usage"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "t-linux64-ms-001"
+            }
+          ]
+        },
+        {
+          "alias": "queue",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT mean(\"pendingTasks\") FROM \"autogen\".\"tc_queue2_exec\" WHERE (\"provisionerId\" = 'releng-hardware') AND (\"workerType\" =~ /^$workerType$/) AND $timeFilter GROUP BY time($__interval), \"workerType\" fill(previous)",
+          "rawQuery": true,
+          "refId": "D",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "$workerType",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "transparent": true,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "InfluxDB v2",
+      "fill": 1,
+      "gridPos": {
+        "h": 3,
+        "w": 16,
+        "x": 0,
+        "y": 20
+      },
+      "id": 10,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "repeat": null,
+      "repeatDirection": "v",
+      "repeatIteration": 1556744656975,
+      "repeatPanelId": 8,
+      "scopedVars": {
+        "workerType": {
+          "selected": true,
+          "text": "gecko-t-linux-talos-b",
+          "value": "gecko-t-linux-talos-b"
+        }
+      },
+      "seriesOverrides": [
+        {
+          "alias": "queue",
+          "color": "#FFB357",
+          "yaxis": 2
+        },
+        {
+          "alias": "cpu",
+          "color": "#FF7383",
+          "linewidth": 0
+        },
+        {
+          "alias": "puppet failure",
+          "color": "#C4162A",
+          "linewidth": 0
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "count",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "procstat",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "query": "SELECT count(distinct(host)) FROM (SELECT \"cpu_usage\",\"host\" FROM \"autogen\".\"procstat\" WHERE $timeFilter) WHERE $timeFilter  AND (\"workerType\" =~ /^$workerType$/) GROUP BY workerType, time($__interval * 10) fill(null)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "cpu_usage"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "t-linux64-ms-001"
+            }
+          ]
+        },
+        {
+          "alias": "puppet failure",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "workerType"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "puppetagent",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT sum(\"events_failure\") FROM \"puppetagent\" WHERE $timeFilter AND (\"workerType\" =~ /^$workerType$/) GROUP BY time($__interval), \"workerType\" fill(null)",
+          "rawQuery": true,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "events_failure"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": []
+        },
+        {
+          "alias": "cpu",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "procstat",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "query": "SELECT max(\"cpu_usage\") FROM \"autogen\".\"procstat\" WHERE $timeFilter  AND (\"workerType\" =~ /^$workerType$/) GROUP BY workerType, time($__interval*20)",
+          "rawQuery": true,
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "cpu_usage"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "t-linux64-ms-001"
+            }
+          ]
+        },
+        {
+          "alias": "queue",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT mean(\"pendingTasks\") FROM \"autogen\".\"tc_queue2_exec\" WHERE (\"provisionerId\" = 'releng-hardware') AND (\"workerType\" =~ /^$workerType$/) AND $timeFilter GROUP BY time($__interval), \"workerType\" fill(previous)",
+          "rawQuery": true,
+          "refId": "D",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "$workerType",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "transparent": true,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "InfluxDB v2",
+      "fill": 1,
+      "gridPos": {
+        "h": 3,
+        "w": 16,
+        "x": 0,
+        "y": 23
+      },
+      "id": 11,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "repeat": null,
+      "repeatDirection": "v",
+      "repeatIteration": 1556744656975,
+      "repeatPanelId": 8,
+      "scopedVars": {
+        "workerType": {
+          "selected": true,
+          "text": "gecko-t-osx-1010",
+          "value": "gecko-t-osx-1010"
+        }
+      },
+      "seriesOverrides": [
+        {
+          "alias": "queue",
+          "color": "#FFB357",
+          "yaxis": 2
+        },
+        {
+          "alias": "cpu",
+          "color": "#FF7383",
+          "linewidth": 0
+        },
+        {
+          "alias": "puppet failure",
+          "color": "#C4162A",
+          "linewidth": 0
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "count",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "procstat",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "query": "SELECT count(distinct(host)) FROM (SELECT \"cpu_usage\",\"host\" FROM \"autogen\".\"procstat\" WHERE $timeFilter) WHERE $timeFilter  AND (\"workerType\" =~ /^$workerType$/) GROUP BY workerType, time($__interval * 10) fill(null)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "cpu_usage"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "t-linux64-ms-001"
+            }
+          ]
+        },
+        {
+          "alias": "puppet failure",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "workerType"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "puppetagent",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT sum(\"events_failure\") FROM \"puppetagent\" WHERE $timeFilter AND (\"workerType\" =~ /^$workerType$/) GROUP BY time($__interval), \"workerType\" fill(null)",
+          "rawQuery": true,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "events_failure"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": []
+        },
+        {
+          "alias": "cpu",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "procstat",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "query": "SELECT max(\"cpu_usage\") FROM \"autogen\".\"procstat\" WHERE $timeFilter  AND (\"workerType\" =~ /^$workerType$/) GROUP BY workerType, time($__interval*20)",
+          "rawQuery": true,
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "cpu_usage"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "t-linux64-ms-001"
+            }
+          ]
+        },
+        {
+          "alias": "queue",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT mean(\"pendingTasks\") FROM \"autogen\".\"tc_queue2_exec\" WHERE (\"provisionerId\" = 'releng-hardware') AND (\"workerType\" =~ /^$workerType$/) AND $timeFilter GROUP BY time($__interval), \"workerType\" fill(previous)",
+          "rawQuery": true,
+          "refId": "D",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "$workerType",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "transparent": true,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "InfluxDB v2",
+      "fill": 1,
+      "gridPos": {
+        "h": 3,
+        "w": 16,
+        "x": 0,
+        "y": 26
+      },
+      "id": 12,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "repeat": null,
+      "repeatDirection": "v",
+      "repeatIteration": 1556744656975,
+      "repeatPanelId": 8,
+      "scopedVars": {
+        "workerType": {
+          "selected": true,
+          "text": "gecko-t-osx-1010-beta",
+          "value": "gecko-t-osx-1010-beta"
+        }
+      },
+      "seriesOverrides": [
+        {
+          "alias": "queue",
+          "color": "#FFB357",
+          "yaxis": 2
+        },
+        {
+          "alias": "cpu",
+          "color": "#FF7383",
+          "linewidth": 0
+        },
+        {
+          "alias": "puppet failure",
+          "color": "#C4162A",
+          "linewidth": 0
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "count",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "procstat",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "query": "SELECT count(distinct(host)) FROM (SELECT \"cpu_usage\",\"host\" FROM \"autogen\".\"procstat\" WHERE $timeFilter) WHERE $timeFilter  AND (\"workerType\" =~ /^$workerType$/) GROUP BY workerType, time($__interval * 10) fill(null)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "cpu_usage"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "t-linux64-ms-001"
+            }
+          ]
+        },
+        {
+          "alias": "puppet failure",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "workerType"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "puppetagent",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT sum(\"events_failure\") FROM \"puppetagent\" WHERE $timeFilter AND (\"workerType\" =~ /^$workerType$/) GROUP BY time($__interval), \"workerType\" fill(null)",
+          "rawQuery": true,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "events_failure"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": []
+        },
+        {
+          "alias": "cpu",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "procstat",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "query": "SELECT max(\"cpu_usage\") FROM \"autogen\".\"procstat\" WHERE $timeFilter  AND (\"workerType\" =~ /^$workerType$/) GROUP BY workerType, time($__interval*20)",
+          "rawQuery": true,
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "cpu_usage"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "t-linux64-ms-001"
+            }
+          ]
+        },
+        {
+          "alias": "queue",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT mean(\"pendingTasks\") FROM \"autogen\".\"tc_queue2_exec\" WHERE (\"provisionerId\" = 'releng-hardware') AND (\"workerType\" =~ /^$workerType$/) AND $timeFilter GROUP BY time($__interval), \"workerType\" fill(previous)",
+          "rawQuery": true,
+          "refId": "D",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "$workerType",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "transparent": true,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "InfluxDB v2",
+      "fill": 1,
+      "gridPos": {
+        "h": 3,
+        "w": 16,
+        "x": 0,
+        "y": 29
+      },
+      "id": 13,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "repeat": null,
+      "repeatDirection": "v",
+      "repeatIteration": 1556744656975,
+      "repeatPanelId": 8,
+      "scopedVars": {
+        "workerType": {
+          "selected": true,
+          "text": "gecko-t-osx-1014",
+          "value": "gecko-t-osx-1014"
+        }
+      },
+      "seriesOverrides": [
+        {
+          "alias": "queue",
+          "color": "#FFB357",
+          "yaxis": 2
+        },
+        {
+          "alias": "cpu",
+          "color": "#FF7383",
+          "linewidth": 0
+        },
+        {
+          "alias": "puppet failure",
+          "color": "#C4162A",
+          "linewidth": 0
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "count",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "procstat",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "query": "SELECT count(distinct(host)) FROM (SELECT \"cpu_usage\",\"host\" FROM \"autogen\".\"procstat\" WHERE $timeFilter) WHERE $timeFilter  AND (\"workerType\" =~ /^$workerType$/) GROUP BY workerType, time($__interval * 10) fill(null)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "cpu_usage"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "t-linux64-ms-001"
+            }
+          ]
+        },
+        {
+          "alias": "puppet failure",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "workerType"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "puppetagent",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT sum(\"events_failure\") FROM \"puppetagent\" WHERE $timeFilter AND (\"workerType\" =~ /^$workerType$/) GROUP BY time($__interval), \"workerType\" fill(null)",
+          "rawQuery": true,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "events_failure"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": []
+        },
+        {
+          "alias": "cpu",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "procstat",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "query": "SELECT max(\"cpu_usage\") FROM \"autogen\".\"procstat\" WHERE $timeFilter  AND (\"workerType\" =~ /^$workerType$/) GROUP BY workerType, time($__interval*20)",
+          "rawQuery": true,
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "cpu_usage"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "t-linux64-ms-001"
+            }
+          ]
+        },
+        {
+          "alias": "queue",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT mean(\"pendingTasks\") FROM \"autogen\".\"tc_queue2_exec\" WHERE (\"provisionerId\" = 'releng-hardware') AND (\"workerType\" =~ /^$workerType$/) AND $timeFilter GROUP BY time($__interval), \"workerType\" fill(previous)",
+          "rawQuery": true,
+          "refId": "D",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "$workerType",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "transparent": true,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    }
+  ],
+  "schemaVersion": 18,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "tags": [],
+          "text": "gecko-t-linux-talos + gecko-t-linux-talos-b + gecko-t-osx-1010 + gecko-t-osx-1010-beta",
+          "value": [
+            "gecko-t-linux-talos",
+            "gecko-t-linux-talos-b",
+            "gecko-t-osx-1010",
+            "gecko-t-osx-1010-beta"
+          ]
+        },
+        "datasource": "InfluxDB v2",
+        "definition": "SHOW TAG VALUES FROM \"autogen\".\"tc_queue2_exec\" WITH key = \"workerType\" WHERE \"provisionerId\" = 'releng-hardware'",
+        "hide": 0,
+        "includeAll": true,
+        "label": null,
+        "multi": true,
+        "name": "workerType",
+        "options": [
+          {
+            "selected": false,
+            "text": "All",
+            "value": "$__all"
+          },
+          {
+            "selected": false,
+            "text": "gecko-1-b-win2012-gamma",
+            "value": "gecko-1-b-win2012-gamma"
+          },
+          {
+            "selected": false,
+            "text": "gecko-2-b-win2012-gamma",
+            "value": "gecko-2-b-win2012-gamma"
+          },
+          {
+            "selected": false,
+            "text": "gecko-3-b-win2012-gamma",
+            "value": "gecko-3-b-win2012-gamma"
+          },
+          {
+            "selected": true,
+            "text": "gecko-3-t-osx-1010",
+            "value": "gecko-3-t-osx-1010"
+          },
+          {
+            "selected": true,
+            "text": "gecko-t-linux-talos",
+            "value": "gecko-t-linux-talos"
+          },
+          {
+            "selected": true,
+            "text": "gecko-t-linux-talos-b",
+            "value": "gecko-t-linux-talos-b"
+          },
+          {
+            "selected": true,
+            "text": "gecko-t-osx-1010",
+            "value": "gecko-t-osx-1010"
+          },
+          {
+            "selected": true,
+            "text": "gecko-t-osx-1010-beta",
+            "value": "gecko-t-osx-1010-beta"
+          },
+          {
+            "selected": true,
+            "text": "gecko-t-osx-1014",
+            "value": "gecko-t-osx-1014"
+          },
+          {
+            "selected": false,
+            "text": "gecko-t-win10-64-hbeta",
+            "value": "gecko-t-win10-64-hbeta"
+          },
+          {
+            "selected": false,
+            "text": "gecko-t-win10-64-hp",
+            "value": "gecko-t-win10-64-hp"
+          },
+          {
+            "selected": false,
+            "text": "gecko-t-win10-64-ht",
+            "value": "gecko-t-win10-64-ht"
+          },
+          {
+            "selected": false,
+            "text": "gecko-t-win10-64-hw",
+            "value": "gecko-t-win10-64-hw"
+          },
+          {
+            "selected": false,
+            "text": "gecko-t-win10-64-tt",
+            "value": "gecko-t-win10-64-tt"
+          },
+          {
+            "selected": false,
+            "text": "gecko-t-win10-64-ux",
+            "value": "gecko-t-win10-64-ux"
+          }
+        ],
+        "query": "SHOW TAG VALUES FROM \"autogen\".\"tc_queue2_exec\" WITH key = \"workerType\" WHERE \"provisionerId\" = 'releng-hardware'",
+        "refresh": 0,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-24h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "",
+  "title": "Hardware Workers",
+  "uid": "kp_mBrzZz"
+}
