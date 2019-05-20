@@ -7,7 +7,8 @@ The nodejs package "wizzy" uses the grafana api to extract the dashboards and ot
 
 ```
 npm install -g wizzy
-# update conf/wizzy.conf with auth:
+# create conf/wizzy.conf with auth:
+wizzy set grafana url https://grafana.fqdn
 wizzy set grafana username GRAFANA_USERNAME
 wizzy set grafana password GRAFANA_PASSWORD
 ```
